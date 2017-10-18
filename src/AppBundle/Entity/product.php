@@ -36,12 +36,12 @@ class product
     private $price;
 
     /**
-     * @var int
+     * @var Category
      *
      * @ORM\ManyToOne(targetEntity="category", inversedBy="products")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
-    private $categoryId;
+    private $category;
 
     /**
      * @var bool
@@ -110,27 +110,27 @@ class product
     }
 
     /**
-     * Set categoryId
+     * Set category
      *
-     * @param integer $categoryId
+     * @param integer $category
      *
      * @return product
      */
-    public function setCategoryId($categoryId)
+    public function setCategory($category)
     {
-        $this->categoryId = $categoryId;
+        $this->category = $category;
 
         return $this;
     }
 
     /**
-     * Get categoryId
+     * Get category
      *
      * @return int
      */
-    public function getCategoryId()
+    public function getCategory()
     {
-        return $this->categoryId;
+        return $this->category;
     }
 
     /**
