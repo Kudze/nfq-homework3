@@ -39,7 +39,9 @@ class DefaultController extends Controller
         $em->persist($product);
         $em->flush();
 
-        return $this->render('default/generate.html.twig', []);
+        return $this->render('default/generate.html.twig', [
+            'product' => $product
+        ]);
 
     }
 

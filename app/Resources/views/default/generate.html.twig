@@ -6,6 +6,7 @@
     <hr>
 
     <h4>Buvo sugeneruota nauja kategorija, su nauju produktu.</h4>
+    <a href="{{ path('delete', { "id": product.id }) }}">Ištrinti produktą!</a>
     <a href="{{ path('homepage') }}">Grįžti į pradžią!</a>
 
 {% endblock %}
