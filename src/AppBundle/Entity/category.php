@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,6 +29,17 @@ class category
      */
     private $title;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="category")
+     */
+    private $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -61,6 +73,16 @@ class category
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Get products
+     *
+     * @return ArrayCollection
+     */
+    public function getProducts()
+    {
+        return $this->products;
     }
 }
 
