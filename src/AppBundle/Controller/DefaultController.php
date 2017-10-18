@@ -25,6 +25,8 @@ class DefaultController extends Controller
      */
     public function generateAction() {
 
+        $em = $this->getDoctrine()->getManager();
+
         $category = new Category();
         $category->setTitle('Geriausia kategorija');
 
@@ -34,12 +36,39 @@ class DefaultController extends Controller
         $product->setCategory($category);
         $product->setPrice('69 Eurai');
 
-        $em = $this->getDoctrine()->getManager();
         $em->persist($product);
         $em->flush();
 
         return $this->render('default/generate.html.twig', []);
 
+    }
+
+    /**
+     * @Route("/delete/{id}", name="delete")
+     */
+    public function deleteAction($id) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $product = $em->getRepository('AppBundle:Product')->find($id);
+
+        if($product === null)
+            $currRes = 'Nepavyko surasti produkto šiuo ID.';
+
+        else {
+            $em->remove($product);
+            $em->flush();
+
+            $currRes = 'Buvo ištrintas produktas, bet palikta kategorija.';
+        }
+
+        return $this->render('default/delete.html.twig', [
+            'result' => $currRes
+        ]);
 
     }
+
+
+
+
 }

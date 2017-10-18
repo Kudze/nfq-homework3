@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Karolio Kraujelio namų darbai, panaudojant Doctrine.</h1>
+    <hr>
+
+    <h4>{{ result }}</h4>
+    <a href="{{ path('homepage') }}">Grįžti į pradžią!</a>
+
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+
+    body {
+
+        text-align: center;
+
+    }
+
+    a {
+
+        display: block;
+
+    }
+
+</style>
+{% endblock %}
