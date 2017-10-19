@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,13 +47,12 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/delete/{id}", name="delete")
+     * @Route("/delete/{product}", name="delete")
+     * @ParamConverter("product")
      */
-    public function deleteAction($id) {
+    public function deleteAction(Product $product) {
 
         $em = $this->getDoctrine()->getManager();
-
-        $product = $em->getRepository('AppBundle:Product')->find($id);
 
         if($product === null)
             $currRes = 'Nepavyko surasti produkto šiuo ID.';
